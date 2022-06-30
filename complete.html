@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest Selection</title>
+    <link rel="icon" type="image/x-icon" href="https://de3r8ehgs904d.cloudfront.net/wp-content/uploads/2021/12/site-favicon-2-100x100.png">
+    <link href="style/tailwind.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+
+<style>
+        body{
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+		[x-cloak] {
+			display: none;
+		}
+
+		
+	</style>
+  
+</head>
+<script>
+    //   window.onload = () => {
+    //             let bg_image = localStorage.getItem('img_src');
+
+    //             const body = document.querySelector("body");
+               
+
+    //             console.log(bg_image)
+
+    //             if(bg_image !==null){
+    //                 body.style.background = `url(${bg_image})`;
+
+    //                 body.style.cssText += `
+    //                 -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;
+    //                 `;
+
+    //             }
+
+                
+
+    //         };
+</script>
+    
+<body>
+    <div class="flex-1 md:absolute md:inset-y-0 md:left-0 pl-8 pt-2">
+        <div class="flex items-center justify-between w-full md:w-auto">
+          <a href="https://harvestselection.com/">
+            <img class="w-auto h-24" src="assets/logo/Gold-hs-logo.png" alt="">
+          </a>
+        </div>
+    </div>
+	<div class="bg-white rounded-lg p-10 flex items-center justify-center">
+        <div>
+            <svg class="mb-4 h-20 w-20 text-green-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+
+            <h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">Success</h2>
+
+            <div class="text-gray-600 mb-8">
+                Thank you. Your order has been dispatched. Our team will get you back.
+            </div>
+
+            <button onClick="redirect_to_home()" type="button" class="w-40 block mx-auto focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border" 
+            >Back to home</button>
+        </div>
+    </div>
+</body>
+	<script>
+        function redirect_to_home(){
+            localStorage.removeItem("img_src");
+
+            location.href = "https://harvest-selection.netlify.app"; 
+
+        }
+
+	</script>
+</body>
+</html>
