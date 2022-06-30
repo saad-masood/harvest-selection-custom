@@ -1592,7 +1592,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Swiper JS -->
-    <script src="script/app.js"></script>
+    <script src="script/app533629.js"></script>
 	<script>
             window.onload = () => {
             let bg_image = localStorage.getItem('img_src');
@@ -1663,3 +1663,38 @@
 	</script>
 </body>
 </html>
+
+
+<script>
+    document.onkeydown = function(e)
+        {
+            if(event.keyCode == 123)
+            {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0))
+            {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0))
+            {
+                return false;
+            }
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))
+            {
+                return false;
+            }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0))
+        {
+          return false;
+        }
+        }
+    
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        $(document).bind('keydown', 'ctrl+s', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    
+    </script>
