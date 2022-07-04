@@ -358,7 +358,7 @@ let fragrance_price = `<dl class="space-y-2">
                   <div class="relative">
                     <dt class="flex justify-center">
                       <div class="w-24 items-center justify-center rounded-md" style="font-size: 17px">
-                      Calendula
+                      007
                       </div>
                       <p class="ml-16 leading-6 font-medium">Free</p>
                     </dt>
@@ -367,7 +367,7 @@ let fragrance_price = `<dl class="space-y-2">
                   <div class="relative">
                     <dt class="flex justify-center">
                       <div class="w-24 items-center justify-center rounded-md" style="font-size: 17px">
-                      Lavander
+                      013
                       </div>
                       <p class="ml-16 leading-6 font-medium">Free</p>
                     </dt>
@@ -376,7 +376,7 @@ let fragrance_price = `<dl class="space-y-2">
                   <div class="relative">
                     <dt class="flex justify-center">
                       <div class="w-24 items-center justify-center rounded-md" style="font-size: 17px">
-                      Chamomile
+                      028
                       </div>
                       <p class="ml-16 leading-6 font-medium">Free</p>
                     </dt>
@@ -385,7 +385,7 @@ let fragrance_price = `<dl class="space-y-2">
                   <div class="relative">
                     <dt class="flex justify-center">
                       <div class="w-24 items-center justify-center rounded-md" style="font-size: 17px">
-                      Cornflower
+                      010
                       </div>
                       <p class="ml-16 leading-6 font-medium">Free</p>
                     </dt>
@@ -394,7 +394,7 @@ let fragrance_price = `<dl class="space-y-2">
                   <div class="relative">
                     <dt class="flex justify-center">
                       <div class="w-24 items-center justify-center rounded-md" style="font-size: 17px">
-                      Rose
+                      003
                       </div>
                       <p class="ml-16 leading-6 font-medium">Free</p>
                     </dt>
@@ -585,24 +585,35 @@ let crystals_price = `<dl class="space-y-2">
 /***************************** Add oil to cart **************************** */
 
 $(".oil_label").on("click", function (e) {
+
   e.preventDefault();
+
+  // unchecked if already checked
+  if($(this).siblings(2).is(':checked')){
+      $('.oil_label').removeClass("border-4 border-grey-700")
+
+      $("input[name=default_oil]").prop("checked", false);
+
+      $(".remove_preview_oil_btn").addClass("hidden");
+
+      $(".oil_ingredient").hide();
+      let price = $('.price').text()
+      let payload_price  = DataPayload.default_oil.price
+      $('.price').html(parseInt(price) - parseInt(payload_price))
+      delete DataPayload.default_oil;
+
+      add_data_into_cart()
+      show_count_on_cart_icon()
+      return false
+  }
   $(".oil_label_checked_icon").addClass("hidden");
 
   $('.oil_label').removeClass("border-4");
-
-  // $('.oil_label').css('border-color', 'none');
-
-
   $(".oil_label").css("border-color", "#C19751");
-
   $(this).addClass("border-4");
-
-//   $(this).siblings(3).removeClass("hidden");
-  $(".remove_preview_oil_btn").removeClass("hidden");
+  // $(".remove_preview_oil_btn").removeClass("hidden");
   $(this).siblings(2).prop("checked", true);
   var oil_name = $(this).data('id');
-  // var oil_price = $(this).children().eq(0).val();
-  // var oil_price = $(this).siblings().eq(2).val();
 
   if(oil_name == 'no-thankyou'){
 
@@ -618,7 +629,6 @@ $(".oil_label").on("click", function (e) {
 
     add_data_into_cart()
     show_count_on_cart_icon()
-
   }
 
   else{
@@ -636,6 +646,21 @@ $(".oil_label").on("click", function (e) {
 
 $(".fragrance_label").on("click", function (e) {
   e.preventDefault();
+
+    // unchecked if already checked
+    if($(this).siblings(2).is(':checked')){
+      $('.fragrance_label').removeClass("border-4 border-grey-700")
+      $("input[name=fragrance]").prop("checked", false);
+
+      $(".remove_preview_fragrance_btn").addClass("hidden");
+
+      delete DataPayload.fragrance;
+
+      add_data_into_cart()
+      show_count_on_cart_icon()
+
+      return false;
+    }
   $(".fragrance_label_checked_icon").addClass("hidden");
 
   
@@ -647,7 +672,7 @@ $(".fragrance_label").on("click", function (e) {
   $(this).addClass("border-4");
 //   $(this).siblings(3).removeClass("hidden");
   // $(this).children().eq(4).removeClass('hidden');
-  $(".remove_preview_fragrance_btn").removeClass("hidden");
+  // $(".remove_preview_fragrance_btn").removeClass("hidden");
 
   // $(this).children().eq(0).prop( "checked", true );
   $(this).siblings(2).prop("checked", true);
@@ -681,16 +706,30 @@ $(".fragrance_label").on("click", function (e) {
 
 $(".cbd_label").on("click", function (e) {
   e.preventDefault();
+  if($(this).siblings(2).is(':checked')){
+
+    $('.cbd_label').removeClass("border-4 border-grey-700")
+
+
+    $("input[name=cbd]").prop("checked", false);
+
+    $(".remove_preview_cbd_btn").addClass("hidden");
+
+    let price = $('.price').text()
+    let payload_price  = DataPayload.cbd.price
+    $('.price').html(parseInt(price) - parseInt(payload_price))
+    delete DataPayload.cbd;
+
+    add_data_into_cart()
+    show_count_on_cart_icon()
+
+    return false;
+  }
   $(".cbd_label_checked_icon").addClass("hidden");
-
   $('.cbd_label').removeClass("border-4");
-
   $(".cbd_label").css("border-color", "#C19751");
-
-
   $(this).addClass("border-4");
-//   $(this).children().eq(4).removeClass("hidden");
-  $(".remove_preview_cbd_btn").removeClass("hidden");
+  // $(".remove_preview_cbd_btn").removeClass("hidden");
 
   $(this).siblings(2).prop("checked", true)
 
@@ -726,7 +765,25 @@ $(".cbd_label").on("click", function (e) {
 
 $(".goldflake_label").on("click", function (e) {
   e.preventDefault();
-//   $(".goldflake_label_checked_icon").addClass("hidden");
+  if($(this).siblings(2).is(':checked')){
+
+    $('.goldflake_label').removeClass("border-4 border-grey-700")
+    $("input[name=goldflake]").prop("checked", false);
+    $(".remove_preview_goldflake_btn").addClass("hidden");
+    $(".gold_flakes_light_ingredient").hide()
+    $(".gold_flakes_regular_ingredient").hide()
+    $(".gold_flakes_strong_ingredient").hide()
+  
+    let price = $('.price').text()
+    let payload_price  = DataPayload.goldflake.price
+    $('.price').html(parseInt(price) - parseInt(payload_price))
+  
+    delete DataPayload.goldflake;
+  
+    add_data_into_cart()
+    show_count_on_cart_icon()
+    return false
+  }
 
   $('.goldflake_label').removeClass("border-4");
 
@@ -734,8 +791,7 @@ $(".goldflake_label").on("click", function (e) {
 
 
   $(this).addClass("border-4");
-//   $(this).children().eq(4).removeClass("hidden");
-  $(".remove_preview_goldflake_btn").removeClass("hidden");
+  // $(".remove_preview_goldflake_btn").removeClass("hidden");
 
   $(this).siblings(2).prop("checked", true)
 
@@ -794,14 +850,29 @@ $(".goldflake_label").on("click", function (e) {
 
 $(".shimmer_label").on("click", function (e) {
   e.preventDefault();
-//   $(".shimmer_label_checked_icon").addClass("hidden");
+  if($(this).siblings(2).is(':checked')){
+    $('.shimmer_label').removeClass("border-4 border-grey-700")
+    $("input[name=shimmer]").prop("checked", false);
+  
+    $(".remove_preview_shimmer_btn").addClass("hidden");
+  
+    $(".shimmer_light_ingredient").hide()
+    $(".shimmer_regular_ingredient").hide()
+    $(".shimmer_strong_ingredient").hide()
+  
+    delete DataPayload.shimmer;
+  
+    add_data_into_cart()
+    show_count_on_cart_icon()
+    return false
+  }
   $('.shimmer_label').removeClass("border-4");
   $(".shimmer_label").css("border-color", "#C19751");
 
   $(this).addClass("border-4");
 
   $(this).children().eq(4).removeClass("hidden");
-  $(".remove_preview_shimmer_btn").removeClass("hidden");
+  // $(".remove_preview_shimmer_btn").removeClass("hidden");
 
 //   $(this).children().eq(0).prop("checked", true);
   $(this).siblings(2).prop("checked", true)
@@ -855,24 +926,31 @@ $(".shimmer_label").on("click", function (e) {
 
 $(".botanicals_label").on("click", function (e) {
   e.preventDefault();
+  if($(this).siblings(2).is(':checked')){
+    $('.botanicals_label').removeClass("border-4 border-grey-700")
+    $("input[name=botanicals]").prop("checked", false);
+    $(".remove_preview_botanicals_btn").addClass("hidden");
+    $(".botanical_calendula_ingredient").hide()
+    $(".botanical_lavander_ingredient").hide()
+    $(".botanical_chamomile_ingredient").hide()
+    $(".botanical_cornflower_ingredient").hide()
+    $(".botanical_rose_ingredient").hide()
+    let price = $('.price').text()
+    let payload_price  = DataPayload.botanicals.price
+    $('.price').html(parseInt(price) - parseInt(payload_price))
+    delete DataPayload.botanicals;
+    add_data_into_cart()
+    show_count_on_cart_icon()
+    return false
+  }
   $(".botanicals_label_checked_icon").addClass("hidden");
 
-    $('.botanicals_label').removeClass("border-4");
-    $(".botanicals_label").css("border-color", "#C19751");
-
-    $(this).addClass("border-4");
-
-  // $(this).children().eq(4).removeClass('hidden');
-//   $(this).siblings(3).removeClass("hidden");
-
-  $(".remove_preview_botanicals_btn").removeClass("hidden");
-
-  // $(this).children().eq(0).prop( "checked", true );
+  $('.botanicals_label').removeClass("border-4");
+  $(".botanicals_label").css("border-color", "#C19751");
+  $(this).addClass("border-4");
+  // $(".remove_preview_botanicals_btn").removeClass("hidden");
   $(this).siblings(2).prop("checked", true);
-
   var botanicals_name = $(this).closest("label").attr("data-id")
-  var botanicals_price = $(this).children().eq(0).val();
-
 
   $(".botanical_calendula_ingredient").hide()
   $(".botanical_lavander_ingredient").hide()
@@ -934,28 +1012,31 @@ $(".botanicals_label").on("click", function (e) {
 
 $(".crystals_label").on("click", function (e) {
   e.preventDefault();
+  if($(this).siblings(2).is(':checked')){
+    $('.crystals_label').removeClass("border-4 border-grey-700")
+    $("input[name=crystals]").prop("checked", false);
+    $(".remove_preview_crystals_btn").addClass("hidden");
+    $(".red_jasper_crystal_ingredient").hide()
+    $(".clear_quartz_crystal_ingredient").hide()
+    $(".sodalite_crystal_ingredient").hide()
+    $(".green_malachite_crystal_ingredient").hide()
+    $(".yellow_citrine_crystal_ingredient").hide()
+    let price = $('.price').text()
+    let payload_price  = DataPayload.crystals.price
+    $('.price').html(parseInt(price) - parseInt(payload_price))
+    delete DataPayload.crystals;
+    add_data_into_cart()
+    show_count_on_cart_icon()
+    return false
+  }
   $(".crystals_label_checked_icon").addClass("hidden");
-
-  // $(this).children().eq(4).removeClass('hidden');
-//   $(this).siblings(3).removeClass("hidden");
-
-$('.crystals_label').removeClass("border-4");
-$(".crystals_label").css("border-color", "#C19751");
-
-$(this).addClass("border-4");
-
-  $(".remove_preview_crystals_btn").removeClass("hidden");
-
-  // $(this).children().eq(0).prop( "checked", true );
+  $('.crystals_label').removeClass("border-4");
+  $(".crystals_label").css("border-color", "#C19751");
+  $(this).addClass("border-4");
+  // $(".remove_preview_crystals_btn").removeClass("hidden");
   $(this).siblings(2).prop("checked", true);
 
   var crystals_name = $(this).closest("label").attr("data-id");
-  var crystals_price = $(this).children().eq(0).val();
-
-
-  // console.log(DataPayload)
-
-  // $(".crystal_ingredient").show();
 
   $(".red_jasper_crystal_ingredient").hide()
   $(".clear_quartz_crystal_ingredient").hide()
@@ -1071,15 +1152,10 @@ $(document).on("click", ".remove_preview_cbd_btn", function () {
 /***************************** remove goldflake **************************** */
 
 $(document).on("click", ".remove_preview_goldflake_btn", function () {
-//   $(".goldflake_label_checked_icon").addClass("hidden");
 
   $('.goldflake_label').removeClass("border-4 border-grey-700")
-  
-
   $("input[name=goldflake]").prop("checked", false);
-
   $(".remove_preview_goldflake_btn").addClass("hidden");
-
   $(".gold_flakes_light_ingredient").hide()
   $(".gold_flakes_regular_ingredient").hide()
   $(".gold_flakes_strong_ingredient").hide()
@@ -1097,15 +1173,9 @@ $(document).on("click", ".remove_preview_goldflake_btn", function () {
 /***************************** remove shimmer **************************** */
 
 $(document).on("click", ".remove_preview_shimmer_btn", function () {
-//   $(".shimmer_label_checked_icon").addClass("hidden");
-
   $('.shimmer_label').removeClass("border-4 border-grey-700")
-
-
   $("input[name=shimmer]").prop("checked", false);
-
   $(".remove_preview_shimmer_btn").addClass("hidden");
-
   $(".shimmer_light_ingredient").hide()
   $(".shimmer_regular_ingredient").hide()
   $(".shimmer_strong_ingredient").hide()
@@ -1119,24 +1189,18 @@ $(document).on("click", ".remove_preview_shimmer_btn", function () {
 /***************************** remove botanicals **************************** */
 
 $(document).on("click", ".remove_preview_botanicals_btn", function () {
-//   $(".botanicals_label_checked_icon").addClass("hidden");
   $('.botanicals_label').removeClass("border-4 border-grey-700")
-
   $("input[name=botanicals]").prop("checked", false);
-
   $(".remove_preview_botanicals_btn").addClass("hidden");
-
   $(".botanical_calendula_ingredient").hide()
   $(".botanical_lavander_ingredient").hide()
   $(".botanical_chamomile_ingredient").hide()
   $(".botanical_cornflower_ingredient").hide()
   $(".botanical_rose_ingredient").hide()
-
   let price = $('.price').text()
   let payload_price  = DataPayload.botanicals.price
   $('.price').html(parseInt(price) - parseInt(payload_price))
   delete DataPayload.botanicals;
-
   add_data_into_cart()
   show_count_on_cart_icon()
 });
@@ -1144,24 +1208,18 @@ $(document).on("click", ".remove_preview_botanicals_btn", function () {
 /***************************** remove crystals **************************** */
 
 $(document).on("click", ".remove_preview_crystals_btn", function () {
-//   $(".crystals_label_checked_icon").addClass("hidden");
   $('.crystals_label').removeClass("border-4 border-grey-700")
-
   $("input[name=crystals]").prop("checked", false);
-
   $(".remove_preview_crystals_btn").addClass("hidden");
-
   $(".red_jasper_crystal_ingredient").hide()
   $(".clear_quartz_crystal_ingredient").hide()
   $(".sodalite_crystal_ingredient").hide()
   $(".green_malachite_crystal_ingredient").hide()
   $(".yellow_citrine_crystal_ingredient").hide()
-
   let price = $('.price').text()
   let payload_price  = DataPayload.crystals.price
   $('.price').html(parseInt(price) - parseInt(payload_price))
   delete DataPayload.crystals;
-
   add_data_into_cart()
   show_count_on_cart_icon()
 });
@@ -1429,23 +1487,16 @@ function show_total(){
   Object.entries(DataPayload).map(
     ([key, value]) => (totalPrice += +value.price)
   );
-  // console.log(DataPayload);
-  // console.log(totalPrice);
-  // totalPrice += +base_price
 
   if(!isObjectEmpty(DataPayload)){
     $('.price_preview').show()
     $('.price').html(totalPrice)
   }
-  // $(".total_price_display").html("$" + totalPrice);
   show_count_on_cart_icon()
 }
 
 function show_count_on_cart_icon(){
-  // console.log()
-
   $('.items_count').html(Object.keys(DataPayload).length)
-
 }
 
 
@@ -1453,21 +1504,11 @@ $(".price_information_modal_btn").on("click", function (e) {
   e.preventDefault();
 
   $(".price_detail").html('');
-
-  // $(".price_ingredient_title_modal").html('');
-
-
   var page_number = $('.step_number').html()
 
   
   console.log(page_number)
-
-  // $(".ingredient_title").html(ingredient_name);
-
     if(page_number=="1"){
-      
-        // $(".price_ingredient_title_modal").html('Oil Pricing');
-
         $(".price_detail").html(oil_price);
     }
 
