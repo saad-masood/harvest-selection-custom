@@ -279,131 +279,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="py-4">
-                            <div class="flex justify-between">
-                                <div class="uppercase tracking-wide text-xs font-bold text-gray-200 mb-1 leading-tight" x-text="`Step: ${step} of 8`"></div>
-                                <a href="javascript://"> <span class="pr-4 font-bold text-gray-300 mb-3 price_information_modal_btn" x-bind:data-id="`${step}`" x-model="`${step}`" x-show="step < 8"> Price Information</span></a>
-                                <span x-text="`${step}`" class="hidden step_number"></span>
-                            </div>
-                            <div class="flex items-start items-center justify-between">
-                                <div class="flex-1">
-                                    <div x-show="step === 1">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT OIL</div>
-                                    </div>
-                                    
-                                    <div x-show="step === 2">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT FRAGRANCE</div>
-                                    </div>
-
-                                    <div x-show="step === 3">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT GOLD FLAKES</div>
-                                    </div>
-
-                                    <div x-show="step === 4">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT CBD</div>
-                                    </div>
-
-                                    <div x-show="step === 5">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT SHIMMER</div>
-                                    </div>
-
-                                    <div x-show="step === 6">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT BOTANICALS</div>
-                                    </div>
-
-                                    <div x-show="step === 7">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">SELECT CRYSTALS</div>
-                                    </div>
-
-                                    <div x-show="step === 8">
-                                        <div class="text-sm sm:text-lg font-bold text-white leading-tight">YOUR SELECTION</div>
-                                    </div>
-                                </div>
-                                <span class="mr-4 price_preview inline-flex items-center px-4 py-1 rounded-md text-sm font-medium text-sm sm:text-lg text-white " style="background-color: rgba(255,255,255,.08);">
-                                    Total Price: <span class="ml-2">$<span class="price">0</span></span>
-                                </span>
-                                <span class="mr-4 price_preview inline-flex items-center px-4 py-1 rounded-md text-sm font-medium text-lg text-white " style="background-color: rgba(255,255,255,.08);">
-                                    <p>
-                                        <label class="menu-open cursor-pointer flex" for="menu-toggle">
-                                            
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                            </svg>
-                                            <span class="ml-2 items_count">0</span>
-                                        </label>
-                                    </p>
-                                    <input id="menu-toggle" type="checkbox">
-
-                                    <label for="toggle" class="stickyadsClose"></label>
-                                    <div class="drawer flex justify-center items-center z-30 mt-10">
-                                        <ul class="max-w-full w-10/12 mt-32">
-                                            <div class="lg:mt-0 p-5">
-                                                <div class="block absolute top-0 right-0 pt-10 pr-6 close_menu mt-20">
-                                                      <span class="sr-only">Close</span>
-                                                      <p>
-                                                        <label class="menu-open cursor-pointer" for="menu-toggle">
-                                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                                              </svg>
-                                                        </label>
-                                                    </p>
-                                                    <input id="menu-toggle" type="checkbox">
-                                                </div>
-                                                <div class="cart_have_data hidden">
-                                                    <h2 class="text-lg font-medium text-white mt-20">Product Details</h2>
-                                                    <div class="mt-4 rounded-lg shadow-sm ">
-                                                        <h3 class="sr-only">Items in your cart</h3>
-                                                        <ul role="list" class="divide-y divide-gray-200 bill_block">
-                                                            
-                                                        </ul>
-                                                        <dl class="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
-                                                            <div class="flex items-center justify-between">
-                                                                <dt class="text-sm">
-                                                                    Subtotal
-                                                                </dt>
-                                                                <dd class="text-sm font-medium text-white sub_total">
-                                                                    
-                                                                </dd>
-                                                                </div>
-                                                                <div class="flex items-center justify-between">
-                                                                <dt class="text-sm">
-                                                                    Base Price
-                                                                </dt>
-                                                                <dd class="text-sm font-medium text-white base_price">
-
-                                                                </dd>
-                                                                </div>
-                                                                <div class="flex items-center justify-between border-t border-gray-200 pt-6">
-                                                                <dt class="text-base font-medium">
-                                                                    Total
-                                                                </dt>
-                                                                <dd class="text-base font-medium text-white grand_total">
-                                                                    
-                                                                </dd>
-                                                            </div>
-                                                            <button type="button" id="submit_btn"
-                                                                class="focus:outline-none border border-transparent p-1 sm:p-4 rounded-full shadow-sm text-center text-white bg-green-800 hover:bg-green-600 font-medium m-auto flex items-center versailles text-base">
-                                                                    CHECKOUT
-                                                            </button>
-                                                        </dl>
-                                                    </div>
-                                                </div>
-                                                <div class="no_data">
-                                                    <h2 class="text-center text-white">Cart is empty!</h2>
-                                                </div>
-                                            </div>
-                                        </ul>
-                                    </div>
-                                </span>
-                            </div>
-                        </div> -->
                     </div>
                     <!-- /Top Navigation -->
                 
                     <!-- Step Content -->
                     <div>
                         <div class="mb-5 text-center relative">
-                            <img src="assets/pedestal/IMG_6631.PNG" id="pedestal" class="absolute hidden"  style="top: 44px;left: 82px;width:558px">
+                            <img src="assets/pedestal/IMG_6631.PNG" id="pedestal" class="absolute hidden"  style="top: 44px;left: 82px;z-index: -1;width:558px">
 
                             <div class="mx-auto w-48 h-auto mb-2 relative mb-4 shadow-inset ">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="glass_icon object-cover w-full h-96" viewBox="0 0 270 566">

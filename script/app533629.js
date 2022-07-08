@@ -1284,11 +1284,6 @@ function add_data_into_cart(){
     ([key, value]) => (totalPrice += +value.price)
   );
 
-  // Object.entries(DataPayload).map(
-  //   ([key, value]) => (console.log(value))
-  // );
-  // console.log(DataPayload);
-  // console.log(totalPrice);
 
   if(!isObjectEmpty(DataPayload)){
     $('.price_preview').show()
