@@ -1,9 +1,13 @@
 // $(document).ready(function () {
+  $(document).ready(function() {
+    localStorage.removeItem('grand_total_price')
 
+  });
 let DataPayload = {};
 let totalPrice = 0;
 let totalPricee = 0;
 let base_price = 40;
+let shipping_price = 10;
 
 /***************************** Ingredient Details **************************** */
 
@@ -1237,6 +1241,7 @@ function isObjectEmpty(object) {
 
 $("#submit_btn").on("click", function (e) {
   // e.preventDefault()
+  console.log(totalPrice)
   let fm = document.querySelector("#oil_selection_form");
   let form_data = new FormData(fm);
 
@@ -1252,7 +1257,7 @@ $("#submit_btn").on("click", function (e) {
   } else {
     DataPayload["total_price"] = totalPrice;
     console.log(DataPayload)
-    location.href = "https://harvest-selection.netlify.app/complete.html";
+    // location.href = "https://harvest-selection.netlify.app/complete.html";
   }
 
   // DataPayload['total_price'] = totalPrice;
@@ -1284,42 +1289,43 @@ function add_data_into_cart(){
     ([key, value]) => (totalPrice += +value.price)
   );
 
-
   if(!isObjectEmpty(DataPayload)){
     $('.price_preview').show()
     $('.price').html(totalPrice)
   }
   let price_before_base_added = totalPrice
+  
+  totalPrice += +shipping_price
   totalPrice += +base_price
+  totalPrice = totalPrice
+
+  localStorage.setItem("grand_total_price", totalPrice);
 
   $('.bill_block').html('')
 
   if(!isObjectEmpty(DataPayload)){
       Object.keys(DataPayload).forEach((key, value) =>
-                $(`<li class="flex py-4">
-                    <div class="ml-6 flex-1 flex flex-col">
-                        <div class="flex">
-                            <div class="flex-1 mt-2">
-                                <h4 class="text-sm font-medium text-white">
-                                    ${DataPayload[key].name}
-                                </h4>
-                            </div>
-                    
-                            <div class="ml-4 flex-shrink-0 flow-root px-4 sm:px-6">
-                                <span class="-m-2.5 p-2.5 flex items-center justify-center text-white">
-                                    
-                                    <div class="flex-1 pt-2 flex items-end justify-between">
-                                        <p class="mt-1 text-sm font-medium text-white">$ ${DataPayload[key].price}.00</p>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                  </li>`).appendTo($('.bill_block')
-                  ));
+          $(`<li class="flex py-6 px-4 sm:px-6">
+              <div class="flex-1 flex flex-col">
+                  <div class="flex">
+                      <div class="min-w-0 flex-1">
+                          <h4 class="text-sm">
+                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800"> ${DataPayload[key].name} </a>
+                          </h4>
+                      </div>
+  
+                      <div class="ml-4 flex-shrink-0 flow-root">
+                          <p class="mt-1 text-sm font-medium text-gray-900">$ ${DataPayload[key].price}.00</p>
+                      </div>
+                  </div>
+              </div>
+          </li>`).appendTo($('.bill_block')
+          ));
 
           $('.sub_total').html("$"+price_before_base_added)
           $('.base_price').html("$"+base_price)
+          $('.shipping_price').html("$"+shipping_price)
+          $('.top_amount_due').html("$"+totalPrice)
           $('.grand_total').html("$"+totalPrice)
           $('.no_data').hide()
 
@@ -1475,6 +1481,7 @@ $(".info_icon").on("click", function (e) {
 function show_total(){
   totalPrice = 0;
   base_price = 40;
+  shipping_price = 10;
   let fm = document.querySelector("#oil_selection_form");
   let form_data = new FormData(fm);
 
@@ -1609,3 +1616,32 @@ $(".price_information_modal_btn").on("click", function (e) {
 
         }
     // }
+
+
+    // try {
+    //   var xhr = new XMLHttpRequest();
+    //   xhr.open("POST", "https://hooks.zapier.com/hooks/catch/7200544/bgiug59/");
+    //   xhr.send(JSON.stringify({data: "example"}));
+    //   console.log("Pushed to Zapier successfully!");
+    // } catch(e) {
+    //   console.error(e);
+    // }
+
+
+
+  document.querySelector('#contact_form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const Contactdata = Object.fromEntries(new FormData(e.target).entries());
+    Contactdata['total_price'] =  localStorage.getItem("grand_total_price")
+    Contactdata['order_data'] =  DataPayload
+    // console.log(Contactdata)
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://hooks.zapier.com/hooks/catch/7200544/bgiug59/");
+      xhr.send(JSON.stringify({data: Contactdata}));
+      console.log("Pushed to Zapier successfully!");
+      location.href = "https://harvest-selection.netlify.app/complete.html";
+    } catch(e) {
+      console.error(e);
+    }
+  });
