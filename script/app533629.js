@@ -1635,13 +1635,13 @@ $(".price_information_modal_btn").on("click", function (e) {
     Contactdata['total_price'] =  localStorage.getItem("grand_total_price")
     Contactdata['order_data'] =  DataPayload
     // console.log(Contactdata)
-    // try {
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.open("POST", "https://hooks.zapier.com/hooks/catch/7200544/bgiug59/");
-    //   xhr.send(JSON.stringify({data: Contactdata}));
-    //   console.log("Pushed to Zapier successfully!");
-    //   location.href = "https://harvest-selection.netlify.app/complete.html";
-    // } catch(e) {
-    //   console.error(e);
-    // }
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://hooks.zapier.com/hooks/catch/7200544/bgiug59/");
+      xhr.send(JSON.stringify({data: Contactdata}));
+      console.log("Pushed to Zapier successfully!");
+      location.href = "https://harvest-selection.netlify.app/complete.html";
+    } catch(e) {
+      console.error(e);
+    }
   });
