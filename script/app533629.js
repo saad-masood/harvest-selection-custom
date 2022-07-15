@@ -1315,7 +1315,7 @@ function add_data_into_cart(){
                       </div>
   
                       <div class="ml-4 flex-shrink-0 flow-root">
-                          <p class="mt-1 text-sm font-medium text-gray-900">$ ${DataPayload[key].price}.00</p>
+                          <p class="mt-1 text-sm font-medium text-gray-900">$${DataPayload[key].price}.00</p>
                       </div>
                   </div>
               </div>
