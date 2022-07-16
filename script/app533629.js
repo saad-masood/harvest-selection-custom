@@ -1362,23 +1362,6 @@ $(".theme_bg").on("click", function (e) {
   
 });
 
-// $(".theme_bg").on("click", function (e) {
-//   e.preventDefault();
-
-//   console.log($(this).children().eq(2).find("img").attr("data-id"));
-//   // $('.oil_label_checked_icon').addClass('hidden');
-//   let value = $(this).children().eq(0).val();
-
-//   $(".images_list").removeClass("border-4 border-green-500");
-
-//   $(this).children().eq(2).addClass("border-4 border-green-500");
-
-//   let image_src = $(this).children().eq(2).find("img").attr("data-id");
-
-//   localStorage.setItem("img_src", image_src);
-// });
-
-
 
 $(".info_icon").on("click", function (e) {
   // let ingredient_name = $(this).closest("label").attr("data-id");
@@ -1615,19 +1598,6 @@ $(".price_information_modal_btn").on("click", function (e) {
           $('.goldflake_regular_text_mobile').removeClass("hidden")
 
         }
-    // }
-
-
-    // try {
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.open("POST", "https://hooks.zapier.com/hooks/catch/7200544/bgiug59/");
-    //   xhr.send(JSON.stringify({data: "example"}));
-    //   console.log("Pushed to Zapier successfully!");
-    // } catch(e) {
-    //   console.error(e);
-    // }
-
-
 
   document.querySelector('#contact_form').addEventListener('submit', (e) => {
     e.preventDefault()
