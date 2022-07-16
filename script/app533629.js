@@ -1640,7 +1640,7 @@ $(".price_information_modal_btn").on("click", function (e) {
       xhr.open("POST", "https://hooks.zapier.com/hooks/catch/7200544/bgiug59/");
       xhr.send(JSON.stringify({data: Contactdata}));
       console.log("Pushed to Zapier successfully!");
-      location.href = "https://harvest-selection.netlify.app/complete.html";
+      location.href = "https://customize.harvestselection.com/complete.html";
     } catch(e) {
       console.error(e);
     }
