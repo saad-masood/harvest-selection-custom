@@ -1299,7 +1299,7 @@ function add_data_into_cart(){
   totalPrice += +base_price
   totalPrice = totalPrice
 
-  localStorage.setItem("grand_total_price", totalPrice);
+  localStorage.setItem("grand_total_price", "$"+totalPrice);
 
   $('.bill_block').html('')
 
